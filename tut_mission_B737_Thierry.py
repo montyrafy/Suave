@@ -182,17 +182,17 @@ def vehicle_setup():
     # Vehicle level mass properties
     # The maximum takeoff gross weight is used by a number of methods, most notably the weight
     # method. However, it does not directly inform mission analysis.
-    vehicle.mass_properties.max_takeoff               = 79015.8 * Units.kilogram 
+    vehicle.mass_properties.max_takeoff               = 61549.77 * Units.lb 
     # The takeoff weight is used to determine the weight of the vehicle at the start of the mission
-    vehicle.mass_properties.takeoff                   = 79015.8 * Units.kilogram   
+    vehicle.mass_properties.takeoff                   = 61549.77 * Units.lb   
     # Operating empty may be used by various weight methods or other methods. Importantly, it does
     # not constrain the mission analysis directly, meaning that the vehicle weight in a mission
     # can drop below this value if more fuel is needed than is available.
-    vehicle.mass_properties.operating_empty           = 62746.4 * Units.kilogram 
+    vehicle.mass_properties.operating_empty           = 33747.09 * Units.lb 
     # The maximum zero fuel weight is also used by methods such as weights
-    vehicle.mass_properties.max_zero_fuel             = 62732.0 * Units.kilogram
+    vehicle.mass_properties.max_zero_fuel             = (61549.77-12689) * Units.lb
     # Cargo weight typically feeds directly into weights output and does not affect the mission
-    vehicle.mass_properties.cargo                     = 10000.  * Units.kilogram   
+    vehicle.mass_properties.cargo                     = 8000.  * Units.kilogram  #based on crj 700 
     
     # Envelope properties
     # These values are typical FAR values for a transport of this type
@@ -201,10 +201,10 @@ def vehicle_setup():
 
     # Vehicle level parameters
     # The vehicle reference area typically matches the main wing reference area 
-    vehicle.reference_area         = 124.862 * Units['meters**2']  
+    vehicle.reference_area         = 644.28 * Units['ft**2']  
     # Number of passengers, control settings, and accessories settings are used by the weights
     # methods
-    vehicle.passengers             = 170
+    vehicle.passengers             = 76
     vehicle.systems.control        = "fully powered" 
     vehicle.systems.accessories    = "medium range"
 
@@ -241,21 +241,21 @@ def vehicle_setup():
     wing = SUAVE.Components.Wings.Main_Wing()
     wing.tag = 'main_wing'
     
-    wing.aspect_ratio            = 10.18
+    wing.aspect_ratio            = 10.87
     # Quarter chord sweep is used as the driving sweep in most of the low fidelity analysis methods.
     # If a different known value (such as leading edge sweep) is given, it should be converted to
     # quarter chord sweep and added here. In some cases leading edge sweep will be used directly as
     # well, and can be entered here too.
-    wing.sweeps.quarter_chord    = 25 * Units.deg
+    wing.sweeps.quarter_chord    = 25.897 * Units.deg
     wing.thickness_to_chord      = 0.1
-    wing.taper                   = 0.1
-    wing.spans.projected         = 34.32 * Units.meter
-    wing.chords.root             = 7.760 * Units.meter
-    wing.chords.tip              = 0.782 * Units.meter
-    wing.chords.mean_aerodynamic = 4.235 * Units.meter
-    wing.areas.reference         = 124.862 * Units['meters**2']  
-    wing.twists.root             = 4.0 * Units.degrees
-    wing.twists.tip              = 0.0 * Units.degrees
+    wing.taper                   = 0.3
+    wing.spans.projected         = 83.68 * Units.ft
+    wing.chords.root             = 12.7 * Units.ft
+    wing.chords.tip              = 3.809 * Units.ft
+    wing.chords.mean_aerodynamic = 9.05 * Units.ft
+    wing.areas.reference         = 644.28 * Units['ft**2']  
+    wing.twists.root             = 3 * Units.degrees
+    wing.twists.tip              = 0 * Units.degrees
     wing.origin                  = [[13.61 * Units.meter, 0, -1.27 * Units.meter]]
     wing.vertical                = False
     wing.symmetric               = True
@@ -309,17 +309,17 @@ def vehicle_setup():
     wing = SUAVE.Components.Wings.Horizontal_Tail()
     wing.tag = 'horizontal_stabilizer'
     
-    wing.aspect_ratio            = 6.16     
-    wing.sweeps.quarter_chord    = 40 * Units.deg
-    wing.thickness_to_chord      = 0.08
-    wing.taper                   = 0.2
-    wing.spans.projected         = 14.2 * Units.meter
-    wing.chords.root             = 4.7  * Units.meter
-    wing.chords.tip              = .955 * Units.meter
-    wing.chords.mean_aerodynamic = 3.0  * Units.meter
-    wing.areas.reference         = 32.488   * Units['meters**2']  
-    wing.twists.root             = 3.0 * Units.degrees
-    wing.twists.tip              = 3.0 * Units.degrees  
+    wing.aspect_ratio            = 4     
+    wing.sweeps.quarter_chord    = 25.5 * Units.deg
+    wing.thickness_to_chord      = 0.09
+    wing.taper                   = 0.5
+    wing.spans.projected         = 20.64 * Units.ft
+    wing.chords.root             = 6.881  * Units.ft
+    wing.chords.tip              = 3.44 * Units.ft
+    wing.chords.mean_aerodynamic = 5.35  * Units.ft
+    wing.areas.reference         = 106.52   * Units['ft**2']  
+    wing.twists.root             = 0 * Units.degrees
+    wing.twists.tip              = 0 * Units.degrees  
     wing.origin                  = [[32.83 * Units.meter, 0 , 1.14 * Units.meter]]
     wing.vertical                = False 
     wing.symmetric               = True
@@ -335,15 +335,15 @@ def vehicle_setup():
     wing = SUAVE.Components.Wings.Vertical_Tail()
     wing.tag = 'vertical_stabilizer'    
 
-    wing.aspect_ratio            = 1.91
-    wing.sweeps.quarter_chord    = 25. * Units.deg
-    wing.thickness_to_chord      = 0.08
-    wing.taper                   = 0.25
-    wing.spans.projected         = 7.777 * Units.meter
-    wing.chords.root             = 8.19  * Units.meter
-    wing.chords.tip              = 0.95  * Units.meter
-    wing.chords.mean_aerodynamic = 4.0   * Units.meter
-    wing.areas.reference         = 27.316 * Units['meters**2']  
+    wing.aspect_ratio            = 1
+    wing.sweeps.quarter_chord    = 30 * Units.deg
+    wing.thickness_to_chord      = 0.09
+    wing.taper                   = 0.8
+    wing.spans.projected         = 10.24 * Units.ft
+    wing.chords.root             = 11.37  * Units.ft
+    wing.chords.tip              = 9.098  * Units.ft
+    wing.chords.mean_aerodynamic = 10.276   * Units.ft
+    wing.areas.reference         = 104.76 * Units['ft**2']  
     wing.twists.root             = 0.0 * Units.degrees
     wing.twists.tip              = 0.0 * Units.degrees  
     wing.origin                  = [[28.79 * Units.meter, 0, 1.54 * Units.meter]] # meters
@@ -574,7 +574,7 @@ def vehicle_setup():
  
     # Design sizing conditions are also used to determine mass flow
     altitude      = 35000.0*Units.ft
-    mach_number   = 0.78 
+    mach_number   = 0.8 
     
     # Add to network
     turbofan.thrust = thrust
