@@ -367,7 +367,7 @@ def vehicle_setup():
     fuselage.number_coach_seats    = vehicle.passengers
     # The seats abreast can be used along with seat pitch and the number of coach seats to
     # determine the length of the cabin if desired.
-    fuselage.seats_abreast         = 6
+    fuselage.seats_abreast         = 6 # Not sure
     fuselage.seat_pitch            = 1     * Units.meter
     # Fineness ratios are used to determine VLM fuselage shape and sections to use in OpenVSP
     # output
@@ -376,7 +376,7 @@ def vehicle_setup():
     # Nose and tail lengths are used in the VLM setup
     fuselage.lengths.nose          = 6.4   * Units.meter
     fuselage.lengths.tail          = 8.0   * Units.meter
-    fuselage.lengths.total         = 38.02 * Units.meter
+    fuselage.lengths.total         = 103 * Units.ft
     # Fore and aft space are added to the cabin length if the fuselage is sized based on
     # number of seats
     fuselage.lengths.fore_space    = 6.    * Units.meter
@@ -410,10 +410,10 @@ def vehicle_setup():
     
     # High-level setup
     turbofan.number_of_engines = 2
-    turbofan.bypass_ratio      = 5.4
-    turbofan.engine_length     = 2.71 * Units.meter
-    turbofan.nacelle_diameter  = 2.05 * Units.meter
-    turbofan.origin            = [[13.72, 4.86,-1.9],[13.72, -4.86,-1.9]]
+    turbofan.bypass_ratio      = 5
+    turbofan.engine_length     = 95.6 * Units.inch
+    turbofan.nacelle_diameter  = 50 * Units.inch
+    turbofan.origin            = [[13.72, 4.86,-1.9],[13.72, -4.86,-1.9]] #À REVOIR
     
     # Approximate the wetted area
     turbofan.areas.wetted      = 1.1*np.pi*turbofan.nacelle_diameter*turbofan.engine_length
@@ -570,10 +570,10 @@ def vehicle_setup():
     thrust.tag ='compute_thrust'
  
     # Design thrust is used to determine mass flow at full throttle
-    thrust.total_design             = 2*24000. * Units.N #Newtons
+    thrust.total_design             = 2*23386. * Units.lbf #Newtons
  
     # Design sizing conditions are also used to determine mass flow
-    altitude      = 35000.0*Units.ft
+    altitude      = 39000.0*Units.ft
     mach_number   = 0.8 
     
     # Add to network
